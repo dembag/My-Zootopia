@@ -20,14 +20,18 @@ def create_animals_data_string(animal_data):
         animal_diet = animal.get('characteristics', None).get('diet', None)
         animal_location = animal.get('locations', None)[0]
         animal_type = animal.get('characteristics', None).get('type', None)
+
+        # Write html string
+        animals_string += '<li class="cards__item">'
         if animal_name:
-            animals_string += f"\nName: {animal_name}\n"
+            animals_string += f"\nName: {animal_name}<br/>\n"
         if animal_diet:
-            animals_string += f"Diet: {animal_diet.capitalize()}\n"
+            animals_string += f"Diet: {animal_diet.capitalize()}<br/>\n"
         if animal_location:
-            animals_string += f"Location: {animal_location}\n"
+            animals_string += f"Location: {animal_location}<br/>\n"
         if animal_type:
-            animals_string += f"Type: {animal_type.capitalize()}\n"
+            animals_string += f"Type: {animal_type.capitalize()}<br/>\n"
+        animals_string += '</li>'
     return animals_string
 
 
@@ -39,7 +43,7 @@ def read_animals_template_content():
 
 def write_animals_template_content(animals_html):
     """ Writes the updated content to 'animals_template.html'."""
-    with open("animals_template.html", "w") as html_file:
+    with open("animals.html", "w") as html_file:
         html_file.write(animals_html)
 
 def main():
