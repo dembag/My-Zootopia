@@ -23,14 +23,17 @@ def create_animals_data_string(animal_data):
 
         # Write html string
         animals_string += '<li class="cards__item">'
+        animals_string += '<div class="card__title">Wire Fox Terrier</div>'
+        animals_string += '<p class="card__text">'
         if animal_name:
-            animals_string += f"\nName: {animal_name}<br/>\n"
+            animals_string += f"\n<strong>Name:</strong> {animal_name}<br/>\n"
         if animal_diet:
-            animals_string += f"Diet: {animal_diet.capitalize()}<br/>\n"
+            animals_string += f"<strong>Diet:</strong> {animal_diet.capitalize()}<br/>\n"
         if animal_location:
-            animals_string += f"Location: {animal_location}<br/>\n"
+            animals_string += f"<strong>Location:</strong> {animal_location}<br/>\n"
         if animal_type:
-            animals_string += f"Type: {animal_type.capitalize()}<br/>\n"
+            animals_string += f"<strong>Type:</strong> {animal_type.capitalize()}<br/>\n"
+        animals_string += '</p>'
         animals_string += '</li>'
     return animals_string
 
@@ -41,10 +44,11 @@ def read_animals_template_content():
         return html_file.read()
 
 
-def write_animals_template_content(animals_html):
+def write_animals_content(animals_html):
     """ Writes the updated content to 'animals_template.html'."""
     with open("animals.html", "w") as html_file:
         html_file.write(animals_html)
+
 
 def main():
     animals_data = load_data("animals_data.json")
@@ -52,7 +56,7 @@ def main():
     animals_template_html = read_animals_template_content()
     animals_template_html = animals_template_html.replace("__REPLACE_ANIMALS_INFO__",
                                                           animals_data_string)
-    write_animals_template_content(animals_template_html)
+    write_animals_content(animals_template_html)
 
 
 
