@@ -7,7 +7,7 @@ def load_data(file_path):
 
 
 def create_animals_data_string(animal_data):
-    """ Iterates through the data and prints:
+    """ Iterates through the data and creates cards containing:
         name,
         diet,
         first location from locations list,
@@ -16,26 +16,33 @@ def create_animals_data_string(animal_data):
     """
     animals_string = ''
     for animal in animal_data:
-        animal_name = animal.get('name')
-        animal_diet = animal.get('characteristics', None).get('diet', None)
-        animal_location = animal.get('locations', None)[0]
-        animal_type = animal.get('characteristics', None).get('type', None)
-
-        # Write html string
-        animals_string += '<li class="cards__item">'
-        animals_string += '<div class="card__title">Wire Fox Terrier</div>'
-        animals_string += '<p class="card__text">'
-        if animal_name:
-            animals_string += f"\n<strong>Name:</strong> {animal_name}<br/>\n"
-        if animal_diet:
-            animals_string += f"<strong>Diet:</strong> {animal_diet.capitalize()}<br/>\n"
-        if animal_location:
-            animals_string += f"<strong>Location:</strong> {animal_location}<br/>\n"
-        if animal_type:
-            animals_string += f"<strong>Type:</strong> {animal_type.capitalize()}<br/>\n"
-        animals_string += '</p>'
-        animals_string += '</li>'
+        animals_string += serialise_animal(animal)
     return animals_string
+
+
+def serialise_animal(animal):
+    """ Creates the html string for an animal card."""
+    animal_name = animal.get('name')
+    animal_diet = animal.get('characteristics', None).get('diet', None)
+    animal_location = animal.get('locations', None)[0]
+    animal_type = animal.get('characteristics', None).get('type', None)
+
+    # Write html string
+    animal_card = ""
+    animal_card += '<li class="cards__item">'
+    animal_card += '<div class="card__title">Wire Fox Terrier</div>'
+    animal_card += '<p class="card__text">'
+    if animal_name:
+        animal_card += f"\n<strong>Name:</strong> {animal_name}<br/>\n"
+    if animal_diet:
+        animal_card += f"<strong>Diet:</strong> {animal_diet.capitalize()}<br/>\n"
+    if animal_location:
+        animal_card += f"<strong>Location:</strong> {animal_location}<br/>\n"
+    if animal_type:
+        animal_card += f"<strong>Type:</strong> {animal_type.capitalize()}<br/>\n"
+    animal_card += '</p>'
+    animal_card += '</li>'
+    return animal_card
 
 
 def read_animals_template_content():
