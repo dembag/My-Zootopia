@@ -30,10 +30,8 @@ def serialise_animal(animal):
     # Write html string
     animal_card = ""
     animal_card += '<li class="cards__item">'
-    animal_card += '<div class="card__title">Wire Fox Terrier</div>'
+    animal_card += f'<div class="card__title">{animal_name}</div>\n'
     animal_card += '<p class="card__text">'
-    if animal_name:
-        animal_card += f"\n<strong>Name:</strong> {animal_name}<br/>\n"
     if animal_diet:
         animal_card += f"<strong>Diet:</strong> {animal_diet.capitalize()}<br/>\n"
     if animal_location:
