@@ -21,11 +21,14 @@ def create_animals_data_string(animal_data):
 
 
 def serialise_animal(animal):
-    """ Creates the html string for an animal card."""
+    """ Creates the HTML string for an animal card."""
     animal_name = animal.get('name')
-    animal_diet = animal.get('characteristics', None).get('diet', None)
-    animal_location = animal.get('locations', None)[0]
-    animal_type = animal.get('characteristics', None).get('type', None)
+    animal_diet = animal.get("characteristics", {}).get("diet")
+    animal_type = animal.get("characteristics", {}).get("type")
+
+    locations = animal.get("locations", [])
+    animal_location = locations[0] if locations else None
+
 
     # Write html string
     animal_card = ""
@@ -45,13 +48,13 @@ def serialise_animal(animal):
 
 def read_animals_template_content():
     """ Gets the content from 'animals_template.html'."""
-    with open("animals_template.html", "r") as html_file:
+    with open("animals_template.html", "r", encoding="utf-8") as html_file:
         return html_file.read()
 
 
 def write_animals_content(animals_html):
-    """ Writes the updated content to 'animals_template.html'."""
-    with open("animals.html", "w") as html_file:
+    """ Writes the updated content to 'animals.html'."""
+    with open("animals.html", "w", encoding="utf-8") as html_file:
         html_file.write(animals_html)
 
 
